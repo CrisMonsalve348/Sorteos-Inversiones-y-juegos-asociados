@@ -30,5 +30,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CasinosSeeder::class,
         ]);
+            $this->call([
+                TipoJuegoSeeder::class,
+            ]);
     }
 }
