@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
     //rutas para los juegos
     Route::get('/games', [GamesController::class, 'mostrarJuegos'])->name('games');
     Route::post('/games', [GamesController::class, 'crearJuego'])->name('games.crear');
+    Route::put('/games/{id}', [GamesController::class, 'actualizarJuego'])->name('editarJuego');
 
 });
 

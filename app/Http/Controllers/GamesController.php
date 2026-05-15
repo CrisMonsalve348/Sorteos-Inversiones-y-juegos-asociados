@@ -36,6 +36,35 @@ class GamesController extends Controller
         ]);
 
 
+        
+    }
+
+    public function actualizarJuego(Request $request, $id){
+        $request->validate([
+        'nombre'=>'required|string|max:255',
+        'descripcion'=>'required|string|max:1000',
+        'tipo_juego'=>'required|exists:tipo_juegos,id',
+        'cantidad_jugadores'=>'required|integer|min:38',
+        'casino'=>'required|exists:casinos,id',
+
+
+
+
+
+
+        ]);
+
+        $game = Game::findOrFail($id);
+        $game->update([
+            'nombre' => $request->nombre,
+            'descripcion'=> $request->descripcion,
+            'tipo_juego_id' => $request->tipo_juego,
+            'cantidad_jugadores' => $request->cantidad_jugadores,
+            'id_casino' => $request->casino,
+    ]); 
+
+
+
 
     }
 }

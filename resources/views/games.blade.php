@@ -10,17 +10,20 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                
                    @forelse($games as $game)
     <p>{{ $game->nombre }}</p>
     <p>{{ $game->descripcion }}</p>
     <p> {{ $game->cantidad_jugadores}} </p>
+
+    <button type="button" onclick="window.location='{{ route('editarJuego', $game->id) }}'">Editar</button>
 
     @empty
     <p>No hay juegos registrados.</p>
 @endforelse
 
     <div class="mt-4">
-        <form action="{{ route('games') }}" method="POST">
+<form action="{{ route('games') }}" method="POST">
     @csrf
     <label for="nombre">Nombre del juego:</label>
     <input type="text" id="nombre" name="nombre" required>
@@ -48,7 +51,8 @@
     <button type="submit">Agregar juego</button>
 </form>
 
-    </div>
+ </div>
+    
 
                 </div>
             </div>
