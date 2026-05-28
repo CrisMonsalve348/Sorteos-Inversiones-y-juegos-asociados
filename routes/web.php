@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\GamesController;
-
+use App\Http\Controllers\ClientesController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -24,6 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/games', [GamesController::class, 'mostrarJuegos'])->name('games');
     Route::post('/games', [GamesController::class, 'crearJuego'])->name('games.crear');
     Route::put('/games/{id}', [GamesController::class, 'actualizarJuego'])->name('editarJuego');
+
+    //Rutas de clientes
+    Route::get('/clientes', [ClientesController::class, 'mostrarClientes'])->name('clientes');
+    Route::post('/clientes', [ClientesController::class, 'crearCliente'])->name('CrearCliente');
 
 });
 
