@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/games', [GamesController::class, 'mostrarJuegos'])->name('games');
     Route::post('/games', [GamesController::class, 'crearJuego'])->name('games.crear');
     Route::put('/games/{id}', [GamesController::class, 'actualizarJuego'])->name('editarJuego');
+    Route::patch('/games/{id}/bloquear', [GamesController::class, 'bloquearJuego'])->name('games.bloquear');
 
     //Rutas de clientes
     Route::get('/clientes', [ClientesController::class, 'mostrarClientes'])->name('clientes');

@@ -14,7 +14,10 @@ class GameSeeder extends Seeder
     {
         $juego=[
             ['nombre'=>'ruletazo de X mes', 'descripcion'=>'Ruletazo de X evento', 'tipo_juego_id'=>1, 'cantidad_jugadores'=>38, 'estado'=>'en_curso', 'id_casino'=>1],
-            ['nombre'=>'manotazo de X mes', 'descripcion'=>'Manotazo de X evento', 'tipo_juego_id'=>2, 'cantidad_jugadores'=>100, 'estado'=>'en_curso', 'id_casino'=>1]
+            ['nombre'=>'manotazo de X mes', 'descripcion'=>'Manotazo de X evento', 'tipo_juego_id'=>2, 'cantidad_jugadores'=>100, 'estado'=>'en_curso', 'id_casino'=>1],
+            ['nombre'=>'manotazo de prueba', 'descripcion'=>'Manotazo de X evento', 'tipo_juego_id'=>2, 'cantidad_jugadores'=>3, 'estado'=>'en_curso', 'id_casino'=>1]
+
+
 
 
 

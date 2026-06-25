@@ -14,4 +14,9 @@ class cliente extends Model
         'id_juego'
 
     ];
+
+     public function juego()
+{
+    return $this->belongsTo(Game::class, 'id_juego');
+}
 }

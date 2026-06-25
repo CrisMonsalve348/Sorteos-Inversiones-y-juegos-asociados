@@ -20,7 +20,7 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->integer('cantidad_jugadores');
             $table->timestamps();
-            $table->enum('estado', ['en_curso', 'finalizado'])->default('en_curso');
+            $table->enum('estado', ['en_curso', 'finalizado', 'bloqueado'])->default('en_curso');
             $table->foreignId('id_casino')
             ->constrained('casinos')
             ->onDelete('cascade');

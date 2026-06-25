@@ -16,10 +16,19 @@ class ClientesController extends Controller
     public function crearCliente(Request $request){
         $request->validate([
             'nombre' => 'required|string|max:255',
-            'numero_identificacion' => 'required|unique:clients|max:10',
-            'telefono' => 'required|unique:clients|max:10',
-            'id_juego' => 'required|exists:tipo_juegos,id'
+            'numero_identificacion' => 'required|unique:clients|min:7|max:10',
+            'numero_telefono' => 'required|unique:clients|max:10',
+            'id_juego' => 'required'
         ]);
+
+        $juego = Game::findOrFail($request->id_juego);
+
+        $clientesactuales = cliente::where('id_juego', $request->id_juego)->count();
+        if($clientesactuales >= $juego->cantidad_jugadores) {
+            return redirect()->back()
+            ->with('error', 'No se pueden agregar más clientes a este juego, se ha alcanzado el limite de jugadores.')
+            ->withInput();
+        }
 
         cliente::create($request->all());
 
