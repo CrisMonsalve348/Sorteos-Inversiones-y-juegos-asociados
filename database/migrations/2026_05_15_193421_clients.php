@@ -22,6 +22,7 @@ return new class extends Migration
                 $table->foreignId('id_juego')
                 ->constrained('games')
                 ->onDelete('cascade');
+                $table->enum('estado', ['activo', 'bloqueado'])->default('activo');
 
 
         });

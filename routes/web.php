@@ -29,7 +29,8 @@ Route::middleware('auth')->group(function () {
     //Rutas de clientes
     Route::get('/clientes', [ClientesController::class, 'mostrarClientes'])->name('clientes');
     Route::post('/clientes', [ClientesController::class, 'crearCliente'])->name('CrearCliente');
-
+    Route::put('/clientes/{id}', [ClientesController::class, 'actualizarCliente'])->name('clientes.actualizar');
+    Route::patch('/clientes/{id}/bloquear', [ClientesController::class, 'bloquearCliente'])->name('clientes.bloquear');
 });
 
 

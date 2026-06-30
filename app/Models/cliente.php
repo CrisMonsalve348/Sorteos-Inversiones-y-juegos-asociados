@@ -11,7 +11,8 @@ class cliente extends Model
         'nombre',
         'numero_identificacion',
         'numero_telefono',
-        'id_juego'
+        'id_juego',
+        'estado'
 
     ];
 

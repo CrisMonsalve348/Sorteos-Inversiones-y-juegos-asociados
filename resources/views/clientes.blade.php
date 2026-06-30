@@ -50,12 +50,60 @@
                         <p>{{ $cliente->numero_identificacion }}</p>
                         <p>{{ $cliente->numero_telefono }}</p>
                         <p>{{ $cliente->juego?->nombre }}</p>
+
+                            <button type="button" onclick="abrirModalCliente(
+        {{ $cliente->id }},
+        '{{ addslashes($cliente->nombre) }}',
+        '{{ addslashes($cliente->numero_identificacion) }}',
+        '{{ addslashes($cliente->numero_telefono) }}',
+        {{ $cliente->id_juego }}
+    )">
+        Editar
+    </button>
+    <button type="button" onclick="modalEliminar({{ $cliente->id }})">
+    Bloquear
+</button>
+
                         *************************************
                     @empty
                         <p>No hay clientes registrados.</p>
                     @endforelse   
                 </div>
-  
+    <div id="modal-cliente" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg w-96">
+        <h3>Editar Cliente</h3>
+        <form id="form-cliente" method="POST">
+            @csrf
+            @method('PUT')
+            <label>Nombre:</label>
+            <input type="text" name="nombre" id="modal-cliente-nombre">
+            <label>Número de identificación:</label>
+            <input type="text" name="numero_identificacion" id="modal-cliente-identificacion">
+            <label>Número de teléfono:</label>
+            <input type="text" name="numero_telefono" id="modal-cliente-telefono">
+            <label>Juego:</label>
+            <select name="id_juego" id="modal-cliente-juego">
+                @foreach($juegos as $juego)
+                    <option value="{{ $juego->id }}">{{ $juego->nombre }}</option>
+                @endforeach
+            </select>
+            <button type="submit">Actualizar</button>
+            <button type="button" onclick="cerrarModalCliente()">Cancelar</button>
+        </form>
+    </div>
+</div>
+<div id="modal-bloquear" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg w-96">
+        <h3>¿Bloquear cliente?</h3>
+        <p>El cliente dejará de aparecer en el sistema.</p>
+        <form id="form-bloquear" method="POST">
+            @csrf
+            @method('PATCH')
+            <button type="submit">Confirmar</button>
+            <button type="button" onclick="cerrarModalBloquear()">Cancelar</button>
+        </form>
+    </div>
+</div>
 
   
     
@@ -65,3 +113,25 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    function abrirModalCliente(id, nombre, identificacion, telefono, idJuego) {
+    document.getElementById('modal-cliente').classList.remove('hidden');
+    document.getElementById('modal-cliente-nombre').value = nombre;
+    document.getElementById('modal-cliente-identificacion').value = identificacion;
+    document.getElementById('modal-cliente-telefono').value = telefono;
+    document.getElementById('modal-cliente-juego').value = idJuego;
+    document.getElementById('form-cliente').action = `/clientes/${id}`;
+}
+
+function cerrarModalCliente() {
+    document.getElementById('modal-cliente').classList.add('hidden');
+}
+function modalEliminar(id) {
+    document.getElementById('modal-bloquear').classList.remove('hidden');
+    document.getElementById('form-bloquear').action = `/clientes/${id}/bloquear`;
+}
+
+function cerrarModalBloquear() {
+    document.getElementById('modal-bloquear').classList.add('hidden');
+}
+</script>
