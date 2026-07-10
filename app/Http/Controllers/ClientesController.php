@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\cliente;
 use App\Models\Game;
+use App\Exports\ClientesExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class ClientesController extends Controller
 {
     public function mostrarClientes(){
@@ -61,5 +64,9 @@ public function bloquearCliente($id) {
     $cliente = cliente::findOrFail($id);
     $cliente->update(['estado' => 'bloqueado']);
     return redirect()->route('clientes')->with('success', 'Cliente bloqueado correctamente.');
+}
+
+public function exportar() {
+    return Excel::download(new ClientesExport, 'clientes.xlsx');
 }
 }

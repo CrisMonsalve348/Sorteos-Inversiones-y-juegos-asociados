@@ -45,6 +45,7 @@
 
         
                 <div class="mt-4">
+                    <a href="{{ route('clientes.export') }}">Descargar Excel</a>
                     @forelse($clientes as $cliente)
                         <p>{{ $cliente->nombre }}</p>
                         <p>{{ $cliente->numero_identificacion }}</p>

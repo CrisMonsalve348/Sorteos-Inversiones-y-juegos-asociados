@@ -16,7 +16,7 @@
     <p>{{$user->role}}</p>
     <p>{{$user->phone_number}}</p>
     *******************************
-
+@if(auth()->user()->role === 'admin')
        <button type="button" onclick="abrirModal(
     {{ $user->id }},                        
     '{{ addslashes($user->name) }}',       
@@ -28,11 +28,10 @@
     Editar
 </button>
 
-
 <button type="button" onclick="modalEliminar({{ $user->id }})">
     Bloquear
 </button>
-
+@endif
     @empty
     <p>No hay usuarios registrados.</p>
 @endforelse

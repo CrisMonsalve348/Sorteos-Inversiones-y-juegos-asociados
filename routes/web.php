@@ -20,9 +20,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
     //listado de usuarios
+    
     Route::get('/user', [UserController::class, 'MostrarUsuarios'])->name('user');
+    Route::middleware(['auth', 'role:admin'])->group(function () {
      Route::put('/user/{id}', [UserController::class, 'actualizarUsuario'])->name('user.actualizar');
      Route::patch('/user/{id}/bloquear', [UserController::class, 'bloquearUsuario'])->name('user.bloquear');
+    });
     //rutas para los juegos
     Route::get('/games', [GamesController::class, 'mostrarJuegos'])->name('games');
     Route::post('/games', [GamesController::class, 'crearJuego'])->name('games.crear');
@@ -36,7 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/clientes/{id}', [ClientesController::class, 'actualizarCliente'])->name('clientes.actualizar');
     Route::patch('/clientes/{id}/bloquear', [ClientesController::class, 'bloquearCliente'])->name('clientes.bloquear');
 });
-
+//rutas para exportar clientes
+Route::get('/clientes/export', [ClientesController::class, 'exportar'])->name('clientes.export');
 
 
 require __DIR__.'/auth.php';
