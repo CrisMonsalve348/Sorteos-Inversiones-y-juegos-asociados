@@ -12,28 +12,59 @@
                 <div class="p-6 text-gray-900">
                 
                    @forelse($games as $game)
-                
-    <p>{{ $game->nombre }}</p>
-    <p>{{ $game->descripcion }}</p>
-    <p> {{ $game->cantidad_jugadores}} </p>
-    ***************************
 
+    <details class="group mb-4 rounded-lg border border-gray-200 bg-gray-50 p-4 shadow-sm">
+        <summary class="cursor-pointer list-none">
+            <div class="flex items-center justify-between gap-4">
+                <div>
+                    <p class="text-lg font-semibold text-gray-900">{{ $game->nombre }}</p>
+                    <p class="text-sm text-gray-600">{{ $game->descripcion }}</p>
+                </div>
+                <span class="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700">
+                    {{ $game->clientes->count() }}/{{ $game->cantidad_jugadores }}
+                </span>
+            </div>
+        </summary>
 
-   <button type="button" onclick="abrirModal(
-    {{ $game->id }},                          // id
-    '{{ addslashes($game->nombre) }}',        // nombre
-    {{ $game->cantidad_jugadores }},          // cantidad
-    '{{ addslashes($game->descripcion) }}',   // descripcion
-    {{ $game->tipo_juego_id }},               // tipoJuegoId
-    {{ $game->id_casino }}                    // idCasino
-)">
-    Editar
-</button>
+        <div class="mt-4 border-t border-gray-200 pt-4">
+            <div class="space-y-2 text-sm text-gray-700">
+                <p><span class="font-semibold">Estado:</span> {{ ucfirst(str_replace('_', ' ', $game->estado)) }}</p>
+                <p><span class="font-semibold">Jugadores inscritos:</span> {{ $game->clientes->count() }}/{{ $game->cantidad_jugadores }}</p>
 
-<button type="button" onclick="modalEliminar({{ $game->id }})">
-    Bloquear
-</button>
+                <div>
+                    <p class="font-semibold">Todos los jugadores</p>
+                    @if($game->clientes->isEmpty())
+                        <p class="mt-2 text-gray-500">No hay jugadores registrados para este juego.</p>
+                    @else
+                        <ul class="mt-2 max-h-40 overflow-y-auto rounded border border-gray-200 bg-white">
+                            @foreach($game->clientes as $cliente)
+                                <li class="border-b border-gray-100 px-3 py-2 text-sm last:border-b-0">
+                                    {{ $cliente->nombre }} - {{ $cliente->numero_identificacion }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </div>
+            </div>
 
+            <div class="mt-4 flex flex-wrap gap-2">
+                <button type="button" onclick="abrirModal(
+                    {{ $game->id }},
+                    '{{ addslashes($game->nombre) }}',
+                    {{ $game->cantidad_jugadores }},
+                    '{{ addslashes($game->descripcion) }}',
+                    {{ $game->tipo_juego_id }},
+                    {{ $game->id_casino }}
+                )" class="rounded bg-yellow-500 px-3 py-2 text-sm font-medium text-white">
+                    Editar
+                </button>
+
+                <button type="button" onclick="modalEliminar({{ $game->id }})" class="rounded bg-red-600 px-3 py-2 text-sm font-medium text-white">
+                    Bloquear
+                </button>
+            </div>
+        </div>
+    </details>
 
     @empty
     <p>No hay juegos registrados.</p>

@@ -24,4 +24,9 @@ class Game extends Model
     {
         return $this->belongsTo(Casino::class, 'id_casino');
     }
+
+    public function clientes()
+    {
+        return $this->hasMany(cliente::class, 'id_juego');
+    }
 }

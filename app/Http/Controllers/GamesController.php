@@ -10,7 +10,7 @@ use App\Models\casino;
 class GamesController extends Controller
 {
    public function mostrarJuegos(){
-    $games = Game::where('estado', 'en_curso')->get();
+    $games = Game::where('estado', 'en_curso')->with('clientes')->get();
     $tipo_juego = TipoJuego::all();
     $casinos = casino::all();
     return view('games', compact('games', 'tipo_juego', 'casinos'));

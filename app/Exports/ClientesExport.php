@@ -29,7 +29,7 @@ class ClientesExport implements FromCollection, WithHeadings, WithColumnFormatti
 
     public function headings(): array
     {
-        return ['ID', 'Nombre', 'Identificación', 'Teléfono', 'Juego'];
+        return ['Nombre', 'Identificación', 'Teléfono', 'Juego'];
     }
 
     public function columnFormats(): array
