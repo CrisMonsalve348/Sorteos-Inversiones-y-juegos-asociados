@@ -42,5 +42,6 @@ Route::middleware('auth')->group(function () {
 //rutas para exportar clientes
 Route::get('/clientes/export', [ClientesController::class, 'exportar'])->name('clientes.export');
 
-
+//ruta para ejecutar juego
+Route::post('/games/{id}/ejecutar', [GamesController::class, 'ejecutarJuego'])->name('games.ejecutar');
 require __DIR__.'/auth.php';

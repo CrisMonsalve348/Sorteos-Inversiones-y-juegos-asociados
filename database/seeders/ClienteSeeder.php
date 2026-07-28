@@ -13,10 +13,15 @@ class ClienteSeeder extends Seeder
      */
     public function run(): void
     {
-        $juego = Game::where('cantidad_jugadores', 100)->first();
+        $juego = Game::where('estado', 'en_curso')
+            ->where('cantidad_jugadores', 100)
+            ->whereHas('tipoJuego', function ($query) {
+                $query->where('nombre_juego', 'ruletazo');
+            })
+            ->first();
 
         if (! $juego) {
-            $this->command->warn('No se encontró un juego con 100 jugadores para asignar a los clientes.');
+            $this->command->warn('No se encontró un juego de ruletazo con 100 cupos disponible para asignar a los clientes.');
             return;
         }
 

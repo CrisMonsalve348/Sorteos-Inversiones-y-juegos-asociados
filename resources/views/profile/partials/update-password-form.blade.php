@@ -1,13 +1,14 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Update Password') }}
+        <h2 class="text-xl font-black text-white">
+            {{ __('Actualizar Contraseña') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
+        <p class="mt-1 text-xs text-slate-400">
+            {{ __('Asegúrate de que tu cuenta utilice una contraseña segura y extensa.') }}
         </p>
     </header>
+
 
     <form method="post" action="{{ route('password.update') }}" class="mt-6 space-y-6">
         @csrf
