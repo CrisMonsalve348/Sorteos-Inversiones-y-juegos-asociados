@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Casino Royale - Sorteos & Inversiones') }}</title>
+        <title>{{ config('app.name', 'Inversiones y juegos asociados SAS') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -25,11 +25,11 @@
         <header class="w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-between relative z-10">
             <div class="flex items-center gap-3">
                 <div class="p-2.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 shadow-[0_0_20px_rgba(245,158,11,0.3)]">
-                    <x-application-logo class="h-8 w-auto fill-current text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.6)]" />
+                    <x-application-logo class="h-12 w-12" />
                 </div>
-                <div class="flex flex-col">
-                    <span class="font-black text-lg tracking-wider text-white uppercase">Casino Royale</span>
-                    <span class="text-[10px] tracking-[0.25em] uppercase text-amber-400 font-bold">Sorteos & Inversiones</span>
+                <div class="flex flex-col max-w-xs">
+                    <span class="font-black text-base sm:text-lg tracking-wide text-white leading-tight">Inversiones y juegos asociados SAS</span>
+                    <span class="text-[10px] tracking-[0.2em] uppercase text-amber-400 font-bold mt-0.5">Sorteos & Inversiones</span>
                 </div>
             </div>
 
@@ -125,7 +125,7 @@
 
         <!-- Footer -->
         <footer class="w-full max-w-7xl mx-auto px-6 py-8 border-t border-amber-500/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 relative z-10">
-            <p>&copy; {{ date('Y') }} Casino Royale - Sorteos, Inversiones & Juegos Asociados. Todos los derechos reservados.</p>
+            <p>&copy; {{ date('Y') }} Inversiones y juegos asociados SAS. Todos los derechos reservados.</p>
             <div class="flex items-center gap-6 font-semibold text-slate-400">
                 <span class="hover:text-amber-400 transition cursor-pointer">Términos del Servicio</span>
                 <span class="hover:text-amber-400 transition cursor-pointer">Política de Privacidad</span>

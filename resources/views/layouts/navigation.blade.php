@@ -7,11 +7,10 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="flex items-center gap-3 group">
                         <div class="p-2 rounded-2xl bg-amber-500/10 border border-amber-500/30 group-hover:border-amber-400 group-hover:shadow-[0_0_15px_rgba(245,158,11,0.4)] transition duration-300">
-                            <x-application-logo class="block h-7 w-auto fill-current text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]" />
+                            <x-application-logo class="block h-10 w-10" />
                         </div>
-                        <div class="hidden md:flex flex-col">
-                            <span class="font-extrabold text-sm tracking-wider text-white uppercase group-hover:text-amber-300 transition">Casino Royale</span>
-                            <span class="text-[10px] tracking-[0.2em] uppercase text-amber-400/80 font-bold">Sorteos & Juegos</span>
+                        <div class="hidden md:flex flex-col max-w-[220px]">
+                            <span class="font-extrabold text-sm tracking-wide text-white group-hover:text-amber-300 transition leading-tight">Inversiones y juegos asociados SAS</span>
                         </div>
                     </a>
                 </div>
@@ -58,7 +57,7 @@
 
                     <x-slot name="content">
                         <div class="px-4 py-2 text-xs text-amber-400/80 uppercase font-extrabold tracking-wider border-b border-amber-500/20">
-                            {{ Auth::user()->role === 'admin' ? 'Administrador VIP' : 'Operador Casino' }}
+                            {{ Auth::user()->role === 'admin' ? 'Administrador' : 'Operador' }}
                         </div>
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Mi Perfil') }}

@@ -21,7 +21,7 @@
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
                     <div class="space-y-2">
                         <p class="text-xs uppercase tracking-[0.3em] font-extrabold text-amber-400/90">Panel Principal</p>
-                        <h1 class="text-3xl sm:text-4xl font-black text-white">¡Bienvenido al Casino, {{ Auth::user()->name }}!</h1>
+                        <h1 class="text-3xl sm:text-4xl font-black text-white">¡Bienvenido, {{ Auth::user()->name }}!</h1>
                         <p class="text-sm text-slate-300 max-w-2xl leading-relaxed">
                             Has iniciado sesión en el sistema de gestión de sorteos e inversiones. Desde aquí puedes controlar las salas de juego en tiempo real, inscribir clientes y administrar permisos de usuario.
                         </p>

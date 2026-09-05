@@ -45,3 +45,6 @@ Route::get('/clientes/export', [ClientesController::class, 'exportar'])->name('c
 //ruta para ejecutar juego
 Route::post('/games/{id}/ejecutar', [GamesController::class, 'ejecutarJuego'])->name('games.ejecutar');
 require __DIR__.'/auth.php';
+
+//ruta para mostrar los finalistas del ruletazo
+Route::get('resultadosruletazo', [GamesController::class, 'mostrarFinalistasRuletazo'])->name('ruletazo');

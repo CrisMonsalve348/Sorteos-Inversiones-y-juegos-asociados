@@ -8,6 +8,7 @@ use App\Models\TipoJuego;
 use App\Models\casino;
 use App\Models\Ganador;
 use App\Models\RuletazoFinalista;
+use App\Services\WhatsAppService;
 
 class GamesController extends Controller
 {
@@ -112,22 +113,44 @@ private function ejecutarRuletazo($juego) {
 
     $juego->update(['estado' => 'finalizado']);
 
-    return redirect()->route('games.resultado', $juego->id);
+    return redirect()->route('ruletazo', $juego->id);
 }
 private function ejecutarManotazo($juego) {
     $ganador = $juego->clientes->random();
 
-    Ganador::create([
-        'fk_juego' => $juego->id,
-        'fk_cliente' => $ganador->id,
+    $registro = Ganador::create([
+        'fk_juego'        => $juego->id,
+        'fk_cliente'      => $ganador->id,
         'fecha_resultado' => now(),
-        'notificado' => false,
+        'notificado'      => false,
     ]);
 
     $juego->update(['estado' => 'finalizado']);
 
-    // Aquí va la lógica de WhatsApp que veremos después
+    // Enviar WhatsApp
+    $whatsapp = new WhatsAppService();
+    $enviado = false;
+    if (!empty($ganador->numero_telefono)) {
+        $enviado = $whatsapp->enviarMensaje(
+            $ganador->numero_telefono,
+            $ganador->nombre,
+            $juego->nombre,
+            $juego->casino->nombre ?? 'N/A'
+        );
+    }
+    // Actualizar estado de notificación
+    $registro->update([
+        'notificado'         => $enviado,
+        'mensaje_enviado_at' => $enviado ? now() : null,
+    ]);
 
-    return redirect()->route('games');
+    return redirect()->route('games')->with('success', 'Juego ejecutado. Ganador notificado por WhatsApp.');
+}
+
+public function mostrarFinalistasRuletazo() {
+    $finalistas = RuletazoFinalista::with(['juego', 'cliente'])->get();
+    return view('resultadosruletazo', compact('finalistas'));
 }
 }
+
+https://passwordreset.microsoftonline.com/

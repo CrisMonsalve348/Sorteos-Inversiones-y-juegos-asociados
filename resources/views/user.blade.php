@@ -5,7 +5,7 @@
                 <h2 class="text-2xl font-black tracking-tight text-amber-300 drop-shadow-[0_0_15px_rgba(251,191,36,0.5)]">
                     Directorio de Usuarios
                 </h2>
-                <p class="text-xs text-slate-400 mt-1">Control de operadores y administradores del sistema de casino.</p>
+                <p class="text-xs text-slate-400 mt-1">Control de operadores y administradores del sistema.</p>
             </div>
             <div class="inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-4 py-2 text-xs font-bold text-amber-300 ring-1 ring-amber-400/30">
                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>

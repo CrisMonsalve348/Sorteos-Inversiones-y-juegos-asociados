@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="mb-6 text-center">
         <h2 class="text-2xl font-black text-white tracking-tight">Registro de Operador</h2>
-        <p class="text-xs text-amber-400/80 font-medium mt-1">Crea tu cuenta para acceder a la plataforma de casino</p>
+        <p class="text-xs text-amber-400/80 font-medium mt-1">Crea tu cuenta para acceder a la plataforma</p>
     </div>
 
     <form method="POST" action="{{ route('register') }}" class="space-y-4">

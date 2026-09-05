@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="mb-6 text-center">
         <h2 class="text-2xl font-black text-white tracking-tight">Acceso a la Plataforma</h2>
-        <p class="text-xs text-amber-400/80 font-medium mt-1">Ingresa tus credenciales para acceder al casino</p>
+        <p class="text-xs text-amber-400/80 font-medium mt-1">Ingresa tus credenciales para acceder a la plataforma</p>
     </div>
 
     <!-- Session Status -->
@@ -13,7 +13,7 @@
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Correo Electrónico')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="usuario@casino.com" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="usuario@empresa.com" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 

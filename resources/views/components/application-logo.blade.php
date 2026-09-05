@@ -1,22 +1,20 @@
-<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {{ $attributes }}>
-    <defs>
-        <linearGradient id="casinoGold" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#FCD34D" />
-            <stop offset="50%" stop-color="#F59E0B" />
-            <stop offset="100%" stop-color="#B45309" />
-        </linearGradient>
-        <linearGradient id="casinoRed" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#EF4444" />
-            <stop offset="100%" stop-color="#991B1B" />
-        </linearGradient>
-    </defs>
-    <!-- Outer Chip Ring -->
-    <circle cx="50" cy="50" r="44" stroke="url(#casinoGold)" stroke-width="4" stroke-dasharray="10 4" />
-    <circle cx="50" cy="50" r="38" stroke="url(#casinoGold)" stroke-width="2" />
-    <!-- Inner Diamond / Crown Emblem -->
-    <path d="M50 18L72 50L50 82L28 50L50 18Z" fill="url(#casinoGold)" opacity="0.9" />
-    <path d="M50 26L64 50L50 74L36 50L50 26Z" fill="url(#casinoRed)" />
-    <!-- Center Star -->
-    <polygon points="50,38 53,46 62,46 55,51 58,59 50,54 42,59 45,51 38,46 47,46" fill="#FDF0A6" />
-</svg>
+@php
+    $logoExists = file_exists(public_path('images/logo.png'));
+@endphp
 
+@if ($logoExists)
+    <img
+        src="{{ asset('images/logo.png') }}"
+        alt="Inversiones y juegos asociados SAS"
+        {{ $attributes->merge(['class' => 'object-contain']) }}
+    />
+@else
+    <div
+        {{ $attributes->merge(['class' => 'flex items-center justify-center rounded-lg border-2 border-dashed border-amber-500/40 bg-slate-800/30 text-amber-500/40']) }}
+        title="Coloque el logo de la empresa en public/images/logo.png"
+    >
+        <svg class="w-1/2 h-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+    </div>
+@endif

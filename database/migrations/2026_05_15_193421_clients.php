@@ -17,7 +17,7 @@ return new class extends Migration
                 $table->id();
                 $table->string('nombre');
                 $table->string('numero_identificacion')->unique();
-                $table->string('numero_telefono')->unique();
+                $table->string('numero_telefono');
                 $table->timestamps();
                 $table->foreignId('id_juego')
                 ->constrained('games')

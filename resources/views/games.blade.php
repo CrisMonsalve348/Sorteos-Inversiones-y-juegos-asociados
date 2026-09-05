@@ -19,7 +19,7 @@
                 <div class="absolute -top-12 -right-12 w-48 h-48 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between relative z-10">
                     <div>
-                        <p class="text-xs uppercase tracking-[0.3em] font-extrabold text-amber-400/90">Casino Royale & Sorteos</p>
+                        <p class="text-xs uppercase tracking-[0.3em] font-extrabold text-amber-400/90">Inversiones y juegos asociados SAS</p>
                         <h1 class="mt-1 text-3xl font-black text-white">Partidas y Ruletas Disponibles</h1>
                         <p class="mt-2 max-w-2xl text-sm text-slate-300 leading-relaxed">Visualiza el estado de cada juego, controla participantes en tiempo real y ejecuta la ruleta aleatoria con total transparencia.</p>
                     </div>
