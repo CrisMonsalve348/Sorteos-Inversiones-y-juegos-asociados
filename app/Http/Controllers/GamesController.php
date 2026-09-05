@@ -102,6 +102,7 @@ public function ejecutarJuego($id){
 }
 private function ejecutarRuletazo($juego) {
     $finalistas = $juego->clientes->random(38);
+    $whatsapp = new WhatsAppService();
 
     foreach ($finalistas as $cliente) {
         RuletazoFinalista::create([
@@ -109,6 +110,15 @@ private function ejecutarRuletazo($juego) {
             'fk_cliente' => $cliente->id,
             'fecha_seleccion' => now(),
         ]);
+
+        if (!empty($cliente->numero_telefono)) {
+            $whatsapp->enviarMensajeFinalista(
+                $cliente->numero_telefono,
+                $cliente->nombre,
+                $juego->nombre,
+                $juego->casino->nombre ?? 'N/A'
+            );
+        }
     }
 
     $juego->update(['estado' => 'finalizado']);

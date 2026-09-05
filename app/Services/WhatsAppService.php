@@ -64,6 +64,42 @@ class WhatsAppService
         }
     }
 
+    public function enviarMensajeFinalista(string $numero, string $nombre, string $juego, string $casino): bool
+    {
+        if (empty($this->token) || empty($this->phoneNumberId)) {
+            Log::error('WhatsApp API Error: Token o Phone Number ID no configurados en .env / config');
+            return false;
+        }
+
+        $to = $this->formatearNumero($numero);
+
+        try {
+            $response = Http::withToken($this->token)
+                ->post("https://graph.facebook.com/v18.0/{$this->phoneNumberId}/messages", [
+                    'messaging_product' => 'whatsapp',
+                    'recipient_type'    => 'individual',
+                    'to'                => $to,
+                    'type'              => 'text',
+                    'text'              => [
+                        'preview_url' => false,
+                        'body'        => "¡Felicitaciones {$nombre}! Has sido seleccionado como FINALISTA del juego {$juego} en el casino {$casino}."
+                    ],
+                ]);
+
+            if ($response->successful()) {
+                Log::info("WhatsApp finalista enviado exitosamente a {$to}");
+                return true;
+            }
+
+            Log::error("Error enviando WhatsApp finalista (HTTP {$response->status()}): " . $response->body());
+            return false;
+
+        } catch (\Exception $e) {
+            Log::error('Excepción enviando WhatsApp finalista: ' . $e->getMessage());
+            return false;
+        }
+    }
+
     /**
      * Método opcional para enviar mensajes mediante Plantilla aprobada en Meta (Template)
      */
